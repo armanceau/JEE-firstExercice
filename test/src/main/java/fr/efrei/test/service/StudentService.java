@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import fr.efrei.test.dto.CreateStudent;
 import fr.efrei.test.model.Student;
 import fr.efrei.test.repository.StudentRepository;
 import jakarta.transaction.Transactional;
@@ -29,9 +30,12 @@ public class StudentService {
         return repository.findAllByDeletedAtNull();
     }
 
-    public Student create(Student student){
+    public Student create(CreateStudent student){
         System.out.println("je suis appelé (création étudiant)");
-        return repository.save(student);
+        Student studentACreer = new Student(student.getName(), student.getFirstname());
+        // studentACreer.setName(student.getName());
+        // studentACreer.setFirstname(student.getFirstname());
+        return repository.save(studentACreer);
     }
 
     @Transactional

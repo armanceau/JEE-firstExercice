@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
+import fr.efrei.test.dto.CreateStudent;
 import fr.efrei.test.model.Student;
 import fr.efrei.test.service.StudentService;
 
@@ -41,7 +42,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> save(@RequestBody Student student){
+    public ResponseEntity<Student> save(@RequestBody CreateStudent student){
         Student createdStudent = service.create(student);
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
     }

@@ -13,6 +13,7 @@ public interface StudentRepository extends JpaRepository<Student, String> {
 
     Optional<Student> findOneByUuid(String uuid);
 
+    @SuppressWarnings("unchecked")
     Student save(Student student);
 
     void deleteByUuid(String uuid);
