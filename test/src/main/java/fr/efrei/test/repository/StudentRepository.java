@@ -16,6 +16,8 @@ public interface StudentRepository extends JpaRepository<Student, String> {
     @SuppressWarnings("unchecked")
     Student save(Student student);
 
+    //Student UpdateByUuid(Student student, String uuid);
+
     void deleteByUuid(String uuid);
 
     //Exemple faire un requete sql : 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.efrei.test.dto.CreateStudent;
+import fr.efrei.test.dto.UpdateStudent;
 import fr.efrei.test.model.Student;
 import fr.efrei.test.repository.StudentRepository;
 import jakarta.transaction.Transactional;
@@ -48,4 +49,31 @@ public class StudentService {
         }
         return false;
     }
+
+    public boolean update(String uuid, UpdateStudent student){
+        Student studentAModifier = findStudentById(uuid);
+        if(studentAModifier != null){
+            studentAModifier.setFirstname(student.getFirstname());
+            studentAModifier.setName(student.getName());   
+            repository.save(studentAModifier);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updatePartielle(String uuid, UpdateStudent student){
+        Student studentAModifier = findStudentById(uuid);
+        if(studentAModifier != null){
+            if(!student.getFirstname().isEmpty()){
+                studentAModifier.setFirstname(student.getFirstname());
+            }
+            if(!student.getName().isEmpty()){
+                studentAModifier.setName(student.getName());
+            }
+            return true;
+        }
+        return false;
+    }
+
+    
 }
