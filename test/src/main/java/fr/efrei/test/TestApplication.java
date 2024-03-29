@@ -12,8 +12,14 @@ import fr.efrei.test.model.Student;
 
 @SpringBootApplication
 @RestController
-@RequestMapping("/")
+@RequestMapping("/hello")
 public class TestApplication {
+
+	@GetMapping
+	public String hello(){
+		
+		return "hello";
+	} 
 
 	public static void main(String[] args) {
 		SpringApplication.run(TestApplication.class, args);

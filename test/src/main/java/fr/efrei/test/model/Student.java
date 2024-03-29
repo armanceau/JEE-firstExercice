@@ -6,16 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Student {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String uuid;
 
+    @NotBlank
+    @Size(min = 1, max = 20)
     private String name;
 
+    @NotBlank
     private String firstname;
 
     private LocalDateTime deletedAt = null;

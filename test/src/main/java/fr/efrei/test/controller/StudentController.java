@@ -18,6 +18,7 @@ import fr.efrei.test.dto.CreateStudent;
 import fr.efrei.test.dto.UpdateStudent;
 import fr.efrei.test.model.Student;
 import fr.efrei.test.service.StudentService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/students")
@@ -45,7 +46,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<Student> save(@RequestBody CreateStudent student){
+    public ResponseEntity<Student> save(@Valid @RequestBody CreateStudent student){
         Student createdStudent = service.create(student);
         return new ResponseEntity<>(createdStudent, HttpStatus.CREATED);
     }
@@ -60,7 +61,7 @@ public class StudentController {
     }
 
     @PutMapping("/{uuid}")
-    public ResponseEntity<?> mettreAJourTotalement(@PathVariable String uuid, @RequestBody UpdateStudent student){
+    public ResponseEntity<?> mettreAJourTotalement(@Valid @PathVariable String uuid, @RequestBody UpdateStudent student){
         boolean isUpdated = service.update(uuid, student);
         if(isUpdated){
             return new ResponseEntity<>(HttpStatus.OK);       
@@ -69,7 +70,7 @@ public class StudentController {
     }
 
     @PatchMapping("/{uuid}")
-    public ResponseEntity<?> mettreAJourPartiellement(@PathVariable String uuid, @RequestBody UpdateStudent student){
+    public ResponseEntity<?> mettreAJourPartiellement(@Valid @PathVariable String uuid, @RequestBody UpdateStudent student){
         boolean isUpdated = service.updatePartielle(uuid, student);
         if(isUpdated){
             return new ResponseEntity<>(HttpStatus.OK);       
