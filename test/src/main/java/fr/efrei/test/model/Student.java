@@ -2,6 +2,7 @@ package fr.efrei.test.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,10 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String uuid;
+
+    @Column(
+        length = 25
+    )
 
     @NotBlank
     @Size(min = 1, max = 20)
