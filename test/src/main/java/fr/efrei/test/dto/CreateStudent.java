@@ -14,11 +14,7 @@ public class CreateStudent {
         return this.name;
     }
 
-   
     public String getFirstname() {
         return this.firstname;
     }
-
-
-    
 }

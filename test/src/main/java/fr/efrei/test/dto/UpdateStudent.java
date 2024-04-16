@@ -12,10 +12,8 @@ public class UpdateStudent {
     public String getName() {
         return this.name;
     }
-
    
     public String getFirstname() {
         return this.firstname;
     }
-
 }

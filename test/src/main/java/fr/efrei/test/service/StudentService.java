@@ -34,8 +34,6 @@ public class StudentService {
     public Student create(CreateStudent student){
         System.out.println("je suis appelé (création étudiant)");
         Student studentACreer = new Student(student.getName(), student.getFirstname());
-        // studentACreer.setName(student.getName());
-        // studentACreer.setFirstname(student.getFirstname());
         return repository.save(studentACreer);
     }
 
@@ -74,6 +72,4 @@ public class StudentService {
         }
         return false;
     }
-
-    
 }
