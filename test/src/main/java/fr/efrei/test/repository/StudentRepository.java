@@ -1,26 +1,22 @@
 package fr.efrei.test.repository;
+
+import fr.efrei.test.model.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-//import org.springframework.data.jpa.repository.Query;
-
-import fr.efrei.test.model.Student;
-
+@Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
-    
-    List<Student> findAllByDeletedAtNull();
 
-    Optional<Student> findOneByUuid(String uuid);
+	// SELECT * from Student where deleted_at is null
+	List<Student> findAllByDeletedAtNull();
 
-    @SuppressWarnings("unchecked")
-    Student save(Student student);
+	// SELECT * FROM Student where uuid = ?
+	Optional<Student> findOneByUuid(String uuid);
 
-    //Student UpdateByUuid(Student student, String uuid);
+	Student save(Student student);
 
-    void deleteByUuid(String uuid);
-
-    //Exemple faire un requete sql : 
-    // @Query("Select uuid from Student")
-    // List<Student> findAllSQL();
+	void deleteByUuid(String uuid);
 }

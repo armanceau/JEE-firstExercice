@@ -1,6 +1,5 @@
-package fr.efrei.test;
+package fr.efrei.test.security;
 
-import fr.efrei.test.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,8 +35,7 @@ public class AuthConfiguration {
 		http
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(requests ->
-						requests.requestMatchers(new AntPathRequestMatcher("/admin/**")).hasAuthority("ADMIN")
-								.requestMatchers(new AntPathRequestMatcher("/api/**")).hasAnyAuthority("USER", "ADMIN")
+						requests.requestMatchers(new AntPathRequestMatcher("/**")).permitAll()
 								.anyRequest().authenticated())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)

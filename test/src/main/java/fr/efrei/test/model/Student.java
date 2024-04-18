@@ -1,71 +1,56 @@
 package fr.efrei.test.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Entity
 public class Student {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String uuid;
 
-    @Column(
-        length = 25
-    )
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String uuid;
 
-    @NotBlank
-    @Size(min = 1, max = 20)
-    private String name;
+	@Column(
+			length = 25
+	)
+	private String name;
 
-    @NotBlank
-    private String firstname;
+	private String firstname;
 
-    private LocalDateTime deletedAt = null;
+	private LocalDateTime deletedAt = null;
 
-    public Student(){}
+	public Student() {}
+	public Student(String name, String firstname) {
+		this.name = name;
+		this.firstname = firstname;
+	}
 
-    public Student(String name, String firstname){
-        this.name = name;
-        this.firstname = firstname;
-    }
+	public String getName() {
+		return name;
+	}
 
-    // Getter for name
-    public String getName() {
-        return name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    // Setter for name
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getFirstname() {
+		return firstname;
+	}
 
-    // Getter for firstname
-    public String getFirstname() {
-        return firstname;
-    }
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-    // Setter for firstname
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
+	public String getUuid() {
+		return uuid;
+	}
 
-    public String getUuid(){
-        return uuid;
-    }
+	public LocalDateTime getDeletedAt() {
+		return deletedAt;
+	}
 
-    public void setDeletedAt(LocalDateTime deletedAt){
-        this.deletedAt = deletedAt;
-    }
-
-    public LocalDateTime getDeletedAt(){
-        return deletedAt;
-    }
+	public void setDeletedAt(LocalDateTime deletedAt) {
+		this.deletedAt = deletedAt;
+	}
 }

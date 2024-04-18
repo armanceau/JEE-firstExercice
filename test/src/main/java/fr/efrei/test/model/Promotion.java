@@ -1,70 +1,40 @@
 package fr.efrei.test.model;
 
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
 @Entity
 public class Promotion {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String uuid;
 
-    private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private String uuid;
 
-    @OneToMany(cascade = CascadeType.REMOVE)
-    //@JoinColumn(name = "promotion_id")
-    private Set<Student> students = new HashSet();
+	private String name;
 
-    private LocalDateTime deletedAt = null;
+	@OneToMany
+	private Set<Student> students = new HashSet<>();
 
-    public Promotion(){}
+	public String getName() {
+		return name;
+	}
 
-    @SuppressWarnings("unchecked")
-    public Promotion(String name, Set students) {
-        this.name = name;
-        this.students = students;
-    }
+	public Set<Student> getStudents() {
+		return students;
+	}
 
-    public String getUuid() {
-        return this.uuid;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+	public void setStudents(Set<Student> students) {
+		this.students = students;
+	}
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Student> getStudents() {
-        return this.students;
-    }
-
-    public void setStudents(Set<Student> students) {
-        this.students = students;
-    }
-
-    public void setDeletedAt(LocalDateTime deletedAt){
-        this.deletedAt = deletedAt;
-    }
-
-    public LocalDateTime getDeletedAt(){
-        return deletedAt;
-    }
-
-    // students.add(nouvelEtudiant);
-
+	public String getUuid() {
+		return uuid;
+	}
 }
