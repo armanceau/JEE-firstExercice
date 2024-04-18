@@ -1,7 +1,6 @@
 package fr.efrei.test.model;
 
 import fr.efrei.test.constants.Role;
-import fr.efrei.test.validator.StrongPassword;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
